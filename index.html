@@ -6,26 +6,44 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Controle de Produtos</h1>
+
+    <div>
+        <input type="text" id="descricao">
+        <input type="text" id="preco">
+        <button onclick="addproduto()">Cadastrar Produto</button> 
+    </div>
+    <hr>
     <table border="1">
         <tr>
             <th>código</th>
             <th>Descrição do Produto</th>
             <th>valor Produto</th>
         </tr>
-        <tbody id="ptodutos"></tbody>
+        <tbody id="produtos"></tbody>
     </table>
 
     <script>
-         let linha = ''
-         let produtos = [
-             {codigo: 1, descricao: 'Feijão carioca 1kg', preco: 4.99 },
-             {codigo: 2, descricao: 'Sardinha 88 150', preco: 6.99}
-        ]
-        
-        produtos.push({codigo: 3, descricao: 'Pa'})
 
-        rodutos.forEach(produto => linha += `
+        let descricaoProduto = document.getElementById('descricao')
+        let precoProduto = document.getElementById('preco')
+
+         let linha = ''
+         let produtos = []
+
+         function addproduto() {
+             const produto = {
+                 codigo: produtos.length + 1,
+                 descricao: descricaoProduto.Value,
+                 preco: Number(precoProduto.value)
+              }
+
+              linha = '' 
+              
+        produtos.push(produto)
+             
+        produtos.forEach(p => linha += `
+        
             <tr>
                 <td>${produto.codigo}</td>
                 <td>${produto.descricao}</td>
@@ -34,7 +52,12 @@
         `)
 
         document.getElementById('produtos').innerHTML = linha
-
+        
+        descricaoProduto.value= ''
+    }
     </script>
+
+    http://github.com/paulocesar  
+
 </body>
 </html>
