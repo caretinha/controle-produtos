@@ -3,61 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Controle de Produto</title>
 </head>
 <body>
+    
     <h1>Controle de Produtos</h1>
 
     <div>
         <input type="text" id="descricao">
         <input type="text" id="preco">
-        <button onclick="addproduto()">Cadastrar Produto</button> 
+        <button onclick="addProduto()" id="btnsalvar">Cadastrar Produto</button>
     </div>
     <hr>
     <table border="1">
         <tr>
-            <th>código</th>
+            <th>Código</th>
             <th>Descrição do Produto</th>
-            <th>valor Produto</th>
+            <th>Valor Produto</th>
+            <th>Opções</th>
         </tr>
         <tbody id="produtos"></tbody>
     </table>
 
-    <script>
-
-        let descricaoProduto = document.getElementById('descricao')
-        let precoProduto = document.getElementById('preco')
-
-         let linha = ''
-         let produtos = []
-
-         function addproduto() {
-             const produto = {
-                 codigo: produtos.length + 1,
-                 descricao: descricaoProduto.Value,
-                 preco: Number(precoProduto.value)
-              }
-
-              linha = '' 
-              
-        produtos.push(produto)
-             
-        produtos.forEach(p => linha += `
-        
-            <tr>
-                <td>${produto.codigo}</td>
-                <td>${produto.descricao}</td>
-                <td>${produto.preco.toFixed(2)}</td>
-            </tr>
-        `)
-
-        document.getElementById('produtos').innerHTML = linha
-        
-        descricaoProduto.value= ''
-    }
-    </script>
-
-    http://github.com/paulocesar  
-
+    <script src="./tabela.js"></script>
 </body>
 </html>
