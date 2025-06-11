@@ -15,8 +15,8 @@ function renderizarTabela() {
             <td>${p.descricao}</td>
             <td>R$ ${p.preco.toFixed(2)}</td>
             <td>
-                <button onclick="editarProduto(${index})">Editar</button>
-                <button onclick="removerProduto(${index})">Remover</button>
+                <button onclick="editarProduto(${index})" class="btn btn-md bg-warning">Editar</button>
+                <button onclick="removerProduto(${index})" class="btn btn-md bg-danger text-light">Remover</button>
             </td>
         </tr>
     `)
@@ -47,17 +47,21 @@ function editarProduto(index) {
     btnSalvar.onclick = atualizarProduto
 }
 
+function atualizarProduto() {
     produtos[indexEditado].descricao = descricaoProduto.value
-    produtos[indexEditado].preco =  Number(precoProduto.value)
+    produtos[indexEditado].preco = Number(precoProduto.value)
 
     renderizarTabela()
- 
+    
     descricaoProduto.value = ''
     precoProduto.value = ''
+    descricaoProduto.focus()
     btnSalvar.innerText = 'Adicionar Produto'
     btnSalvar.onclick = addProduto
+}
 
 function removerProduto(index) {
     const produto = produtos[index]
-    alert(`Produto selecionado: ${produto.descricao}`)
-}
+    produtos.splice(index, 1)
+    renderizarTabela()
+}ok
