@@ -1,0 +1,57 @@
+
+2 linhas
+
+let nomeCliente = document.getElementById('nome');
+let emailCliente = document.getElementById('email');
+let btnSalvar = document.getElementById('btnSalvar');
+let clientes = [];
+let indexEditado = null;
+function renderizarTabela() {
+    let linha = '';
+    clientes.forEach((c, index) => {
+        linha += `
+            <tr>
+                <td>${c.codigo}</td>
+                <td>${c.nome}</td>
+                <td>${c.email}</td>
+                <td>
+                    <button onclick="editarCliente(${index})" class="btn btn-md bg-warning">Editar</button>
+                    <button onclick="removerCliente(${index})" class="btn btn-md bg-danger text-light">Remover</button>
+                </td>
+            </tr>
+        `;
+    });
+    document.getElementById('clientes').innerHTML = linha;
+}
+function addCliente() {
+    clientes.push({
+        codigo: clientes.length + 1,
+        nome: nomeCliente.value,
+        email: emailCliente.value
+    });
+    renderizarTabela();
+    nomeCliente.value = '';
+    emailCliente.value = '';
+    nomeCliente.focus();
+}
+function editarCliente(index) {
+    const cliente = clientes[index];
+    nomeCliente.value = cliente.nome;
+    emailCliente.value = cliente.email;
+    indexEditado = index;
+    btnSalvar.innerText = 'Editar Cliente';
+    btnSalvar.onclick = atualizarCliente;
+}
+function atualizarCliente() {
+    clientes[indexEditado].nome = nomeCliente.value;
+    clientes[indexEditado].email = emailCliente.value;
+    renderizarTabela();
+    nomeCliente.value = '';
+    emailCliente.value = '';
+    nomeCliente.focus();
+    btnSalvar.innerText = 'Cadastrar Cliente';
+    btnSalvar.onclick = addCliente;
+}
+
+</body>
+</html>
