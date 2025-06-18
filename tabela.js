@@ -65,3 +65,4 @@ function removerProduto(index) {
     produtos.splice(index, 1)
     renderizarTabela()
 }ok
+
